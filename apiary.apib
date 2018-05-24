@@ -169,6 +169,9 @@ TPP console API for developers
         + data (new tpp app)
         
 + Response 201
+    + Headers
+    
+            Location: http://ob.metryus.com/tpp/applications/19c7af1e-32c9-4256-932d-9949ed2e5f4f
 
 ### Get available application types [GET /tpp/types]
 + Request (application/json)
@@ -180,10 +183,10 @@ TPP console API for developers
     + Attributes
         + data (tpp purposes)
 
-### Get new client secret [GET /oauth/applications/{clientId}/secret]
+### Get new client secret [GET /oauth/applications/{uuid}/secret]
 
 + Parameters
-    + clientId: myApp@4e56712
+    + uuid: `19c7af1e-32c9-4256-932d-9949ed2e5f4f`
     
 + Request
     + Headers
@@ -195,9 +198,9 @@ TPP console API for developers
         + data
             + clientSecret: KnQClBXcgnIjYKQxCYiy
 
-### Deactivate application [PUT /tpp/applications/{clientId}/deactivation]
+### Deactivate application [PUT /tpp/applications/{uuid}/deactivation]
 + Parameters
-    + clientId: myApp@4e56712
+    + uuid: `19c7af1e-32c9-4256-932d-9949ed2e5f4f`
     
 + Request (application/json)
     + Headers
@@ -206,9 +209,9 @@ TPP console API for developers
 
 + Response 202
 
-### Application activation request [PUT /tpp/applications/{clientId}/activation]
+### Application activation request [PUT /tpp/applications/{uuid}/activation]
 + Parameters
-    + clientId: myApp@4e56712
+    + uuid: `19c7af1e-32c9-4256-932d-9949ed2e5f4f`
     
 + Request (application/json)
     + Headers
@@ -245,9 +248,9 @@ TPP console API for admins
         + data (array)
             + (tpp app)
 
-### Approve application [PUT /tpp/application/{clientId}/approval]
+### Approve application [PUT /tpp/application/{uuid}/approval]
 + Parameters
-    + clientId: myApp@4e56712
+    + uuid: `19c7af1e-32c9-4256-932d-9949ed2e5f4f`
 
 + Request (application/json)
     + Headers
@@ -256,9 +259,9 @@ TPP console API for admins
     
 + Response 202
 
-### Block application [PUT /tpp/application/{clientId}/block]
+### Block application [PUT /tpp/application/{uuid}/block]
 + Parameters
-    + clientId: myApp@4e56712
+    + uuid: `19c7af1e-32c9-4256-932d-9949ed2e5f4f`
 
 + Request (application/json)
     + Headers
@@ -325,6 +328,7 @@ TPP console API for admins
 + AISP
 
 ## tpp app (object)
++ uuid: `19c7af1e-32c9-4256-932d-9949ed2e5f4f`
 + appName: myApp
 + purposes (tpp purposes)
 + clientId: myApp@4e56712
