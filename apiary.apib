@@ -1,9 +1,39 @@
 FORMAT: 1A
-HOST: http://ob.metryus.com/
+HOST: http://ob.metryus.com/api/v1
 
 # Open banking
 
 PSD2 ready Open banking platform API
+
+## User authorizaton API [/auth/users]
+
+### OAuth2 Implicit flow [GET /auth/users/oauth/authorize{?response_type}{?client_id}{?state}{?redirect_uri}{?scopes}]
+
++ Parameters
+    + response_type: token
+    + client_id: devconsole
+    + state: xyz (optional)
+    + redirect_uri: http://www.example.com (optional)
+    + scopes: scope1,scope2,scope3 (optional)
+    
++ Response 302
+
+## User API - Developers [/users/developers]
+
+### Registration initiation [POST /users/developers/registration]
+Initiate developer registration process
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+        
+    + Attributes 
+        + data (developer registration data)
+    
++ Response 200 (application/json)
+    + Attributes (action otp)
+
 
 ## PISP API [/payments]
 
@@ -308,8 +338,8 @@ TPP console API for admins
 
 ## action otp (object)
 + action
-    + method: VERIFICATION
-    + type: OTP
+    + type: VERIFICATION
+    + method : OTP
 + processId: `90c7a24b-54b5-4304-b525-2f2ecb29a11d`
 
 ## otp (object)
@@ -347,3 +377,8 @@ TPP console API for admins
 + login: dev@mail.com
 + registrationDate: 22-05-2018
 + status: ACTIVE/BLOCKED
+
+## developer registration data (object)
++ name: John Doe
++ email: dev@mail.com
++ password: changeit
