@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://ob.metryus.com/api/v1
+HOST: https://ob.metryus.com/api/v1
 
 # Open banking
 
@@ -7,14 +7,14 @@ PSD2 ready Open banking platform API
 
 ## User authorizaton API [/auth/users]
 
-### OAuth2 Implicit flow [GET /auth/users/oauth/authorize{?response_type}{?client_id}{?state}{?redirect_uri}{?scopes}]
+### OAuth2 Implicit flow [GET /auth/users/oauth/authorize{?response_type}{?client_id}{?state}{?redirect_uri}{?scope}]
 
 + Parameters
     + response_type: token
     + client_id: devconsole
     + state: xyz (optional)
     + redirect_uri: http://www.example.com (optional)
-    + scopes: scope1,scope2,scope3 (optional)
+    + scope: scope1 scope2 scope3 (optional)
     
 + Response 302
 
