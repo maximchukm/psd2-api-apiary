@@ -178,7 +178,7 @@ TPP console API for developers
 
 + Response 200 (application/json)
     + Attributes
-        + data (tpp types)
+        + data (tpp purposes)
 
 ### Get new client secret [GET /oauth/applications/{clientId}/secret]
 
@@ -320,9 +320,13 @@ TPP console API for admins
 + type: EMAIL
 + ttl: 300 - time to live in seconds
 
+## tpp purposes (array)
++ PISP
++ AISP
+
 ## tpp app (object)
 + appName: myApp
-+ appTypes (tpp types)
++ purposes (tpp purposes)
 + clientId: myApp@4e56712
 + redirectURIs (array)
     + http://example.com/oauth/callback
@@ -330,13 +334,9 @@ TPP console API for admins
 
 ## new tpp app (object)
 + displayName: myApp
-+ type: AISP/PISP
++ purposes (tpp purposes)
 + redirectURIs (array)
     + http://example.com/oauth/callback
-
-## tpp types (array)
-+ PISP
-+ AISP
 
 ## tpp dev (object)
 + uuid: `6f726a0f-5bf3-4427-8376-ea2e88ec70bb`
