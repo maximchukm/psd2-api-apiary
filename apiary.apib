@@ -1,0 +1,345 @@
+FORMAT: 1A
+HOST: http://obapi.metryus.com/
+
+# Open banking
+
+PSD2 ready Open banking platform API
+
+## PISP API [/payments]
+
+Payment Initiation Services Providers API
+
+### Check for sufficient funds [GET /payments/sufficient-funds/{iban}{?amount}]
+
++ Parameters
+    + iban: DE91100000000123456789 - account IBAN to check
+    + amount: 30.5 (number)
+    
++ Request
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
+
++ Response 200 (application/json)
+    + Attributes (check result)
+
+### Account verification [GET /payments/account-verification/{iban}]
+
++ Parameters
+    + iban: DE91100000000123456789 - account IBAN
+    
++ Request
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+        
+
++ Response 200 (application/json)
+    + Attributes (check result)
+
+### Payment initiation [POST /payments]
+
+Initiate payment to issuer bank if SCA is not required, otherwise ask for additional user authentication
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+        
+    + Attributes 
+        + data (payment)
+    
++ Response 201
+
+## AISP API [/accounts]
+
+Account Information Services Providers API
+
+### Get customer accounts [GET /accounts]
+
++ Request
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
+
++ Response 200 (application/json)
+    + Attributes
+        + data (array)
+            + (account meta)
+
+### Get account details [GET /accounts/{iban}]
+
++ Parameters
+    + iban: DE91100000000123456789 - acccount IBAN for wich details requested
+    
++ Request
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
+
++ Response 200 (application/json)
+    + Attributes
+        + data (account)
+
+### Get account statements [GET /accounts/{iban}/statements]
+
++ Parameters
+    + iban: DE91100000000123456789 - acccount IBAN for wich statements requested
+    
++ Request
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
+    
++ Response 200 (application/json)
+    + Attributes
+        + data (array)
+            + (statement)
+
+## OTP [/otp]
+One Time Password manage services
+
+### OTP verification [POST /otp/verification]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
+    + Attributes
+        + data (otp)
+    
++ Response 200 (application/json)
+    + Attributes (verification result)
+
+### Create new OTP [POST /otp/generating]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
+    + Attributes
+        + data (process)
+        
++ Response 201
+
+### Get OTP info [GET /otp/{processId}/info]
+
++ Parameters
+    + processId: `90c7a24b-54b5-4304-b525-2f2ecb29a11d`
+
++ Request
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
+
++ Response 200 (application/json)
+    + Attributes
+        + data (otp info)
+
+## TPP applications management - Developers [/tpp]
+TPP console API for developers
+
+### Get applications list [GET /tpp/applications]
+    
++ Request
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+            
++ Response 200 (application/json)
+    + Attributes
+        + data (array)
+            + (tpp app)
+
+### Register new application [POST /tpp/applications]
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+    
+    + Attributes
+        + data (new tpp app)
+        
++ Response 201
+
+### Get available application types [GET /tpp/types]
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
++ Response 200 (application/json)
+    + Attributes
+        + data (tpp types)
+
+### Get new client secret [GET /oauth/applications/{clientId}/secret]
+
++ Parameters
+    + clientId: myApp@4e56712
+    
++ Request
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
++ Response 201 (application/json)
+    + Attributes
+        + data
+            + clientSecret: KnQClBXcgnIjYKQxCYiy
+
+### Deactivate application [PUT /tpp/applications/{clientId}/deactivation]
++ Parameters
+    + clientId: myApp@4e56712
+    
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
++ Response 202
+
+### Application activation request [PUT /tpp/applications/{clientId}/activation]
++ Parameters
+    + clientId: myApp@4e56712
+    
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
++ Response 202
+
+## TPP applications management - Admins [/tpp/admin]
+TPP console API for admins
+
+### Get developers list [GET /tpp/developers]
++ Request
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
++ Response 200 (application/json)
+    + Attributes
+        + data (array)
+            + (tpp dev)
+
+### Get developer's applications list [GET /tpp/{developerUUID}/applications]
++ Parameters
+    + developerUUID: `6f726a0f-5bf3-4427-8376-ea2e88ec70bb`
+
++ Request
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+
++ Response 200 (application/json)
+    + Attributes
+        + data (array)
+            + (tpp app)
+
+### Approve application [PUT /tpp/application/{clientId}/approval]
++ Parameters
+    + clientId: myApp@4e56712
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA-
+    
++ Response 202
+
+### Block application [PUT /tpp/application/{clientId}/block]
++ Parameters
+    + clientId: myApp@4e56712
+
++ Request (application/json)
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+    + Attributes
+        + data
+            + reason: Unsatisfied PSD2 requirements
+
++ Response 202
+
+# Data Structures
+
+## check result (object)
++ errors (array)
+
+## verification result (object)
++ result: Success
+
+## payment (object)
++ debit: DE91100000000123456789 (optional)
++ credit: DE91100000000123456116
++ amount: 30.5 (number)
++ currency: USD
++ description: car sharing
+
+## account meta (object)
++ iban: DE91100000000123456789
++ balance: 105.2 (number)
++ currency: USD
+
+## account (object)
++ iban: DE91100000000123456789
++ balance: 105.2 (number)
++ currency: USD
+
+## statement (object)
++ operationType: debit/credit
++ account: DE91100000000123456116 - target account IBAN
++ dateTime: 10.01.2018'T'14:12:34 - transaction date
++ amount: 30.5 (number)
++ description: Rent for a flat
++ currency: USD
+
+## action otp (object)
++ action
+    + method: VERIFICATION
+    + type: OTP
++ processId: `90c7a24b-54b5-4304-b525-2f2ecb29a11d`
+
+## otp (object)
++ processId: `90c7a24b-54b5-4304-b525-2f2ecb29a11d`
++ otp: 7725
+
+## process (object)
++ processId: `90c7a24b-54b5-4304-b525-2f2ecb29a11d`
+
+## otp info (object)
++ type: EMAIL
++ ttl: 300 - time to live in seconds
+
+## tpp app (object)
++ appName: myApp
++ appTypes (tpp types)
++ clientId: myApp@4e56712
++ redirectURIs (array)
+    + http://example.com/oauth/callback
++ status: INACTIVE/ACTIVE/BLOCKED
+
+## new tpp app (object)
++ displayName: myApp
++ type: AISP/PISP
++ redirectURIs (array)
+    + http://example.com/oauth/callback
+
+## tpp types (array)
++ PISP
++ AISP
+
+## tpp dev (object)
++ uuid: `6f726a0f-5bf3-4427-8376-ea2e88ec70bb`
++ login: dev@mail.com
++ registrationDate: 22-05-2018
++ status: ACTIVE/BLOCKED
