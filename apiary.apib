@@ -7,6 +7,8 @@ PSD2 ready Open banking platform API
 
 ## User authorizaton API [/auth/users]
 
+Managers and developers auth API
+
 ### OAuth2 Implicit flow [GET /auth/users/oauth/authorize{?response_type}{?client_id}{?state}{?redirect_uri}{?scope}]
 
 + Parameters
@@ -18,10 +20,23 @@ PSD2 ready Open banking platform API
     
 + Response 302
 
+### User own password changing [POST /auth/users/password/change]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+        
+    + Attributes 
+        + data (password changing data)
+    
++ Response 200 (application/json)
+
 ## User API - Developers [/users/developers]
 
-### Registration initiation [POST /users/developers/registration]
-Initiate developer registration process
+Developers management API
+
+### Registration [POST /users/developers/registration]
 
 + Request (application/json)
     + Headers
@@ -34,8 +49,7 @@ Initiate developer registration process
 + Response 200 (application/json)
     + Attributes (action otp)
 
-### Get profile [GET /users/developers/profile]
-Get own developer profile
+### Get own profile [GET /users/developers/profile]
 
 + Request (application/json)
     + Headers
@@ -45,6 +59,15 @@ Get own developer profile
 + Response 200 (application/json)
     + Attributes (developer profile data)
 
+### Update own profile [PUT /users/developers/profile]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+    + Attributes (developer profile data)            
+        
++ Response 200 (application/json)
 
 ## PISP API [/payments]
 
@@ -382,6 +405,10 @@ TPP console API for admins
 + name: John Doe
 + email: dev@mail.com
 + password: changeit
+
+## password changing data (object)
++ oldPassword: oldPassword
++ newPassword: newPassword
 
 ## developer profile data (object)
 + name: John Doe
