@@ -34,6 +34,17 @@ Initiate developer registration process
 + Response 200 (application/json)
     + Attributes (action otp)
 
+### Get profile [GET /users/developers/profile]
+Get own developer profile
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+        
++ Response 200 (application/json)
+    + Attributes (developer profile data)
+
 
 ## PISP API [/payments]
 
@@ -371,3 +382,7 @@ TPP console API for admins
 + name: John Doe
 + email: dev@mail.com
 + password: changeit
+
+## developer profile data (object)
++ name: John Doe
++ email: dev@mail.com
