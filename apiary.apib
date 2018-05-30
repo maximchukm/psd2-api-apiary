@@ -324,6 +324,19 @@ TPP console API for developers
         + data (array)
             + (tpp app)
 
+### Get application details [GET /tpp/applications/{uuid}]
++ Parameters
+    + uuid: `19c7af1e-32c9-4256-932d-9949ed2e5f4f`
+    
++ Request
+    + Headers
+    
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJpZmljYXRpb25fcHJvY2Vzc19pZCI6ImRkNmU2ZDJmLTNmOWEtNGRiNy1hYTRiLWE4NTBmZjBmNDJkNyIsInVzZXJfdXVpZCI6IjhjNGUyNzU2LTI5MGItNDM0NS05NzdjLTNjNTljN2VhYjM1MCIsInVzZXJfbmFtZSI6ImFuZHJldy5ib2lrb0BmcmVla2V0Y2h1cC5vcmciLCJzY29wZSI6WyJhY2NvdW50X2luZm9ybWF0aW9uIiwicGF5bWVudF9pbml0aWF0aW9uIl0sImV4cCI6MTU4NTY4NzE1NCwiYXV0aG9yaXRpZXMiOlsiYWNjb3VudHNfcmVhZCJdLCJqdGkiOiIxZjFkMGYzNy0wN2ExLTRiN2ItYWI3Zi0xMWY4M2UwZDI3MmYiLCJjbGllbnRfaWQiOiJzd2FnZ2VyIiwic3RhdHVzIjoiT1RQX1BFTkRJTkcifQ.YG0Pw25MsyVvDBMMkp9L_gIJK9KCFZcGYFQoE7lXgdA
+            
++ Response 200 (application/json)
+    + Attributes
+        + data (tpp app)
+
 ### Register new application [POST /tpp/applications]
 
 + Request (application/json)
